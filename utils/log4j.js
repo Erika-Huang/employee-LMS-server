@@ -54,21 +54,21 @@ exports.debug = (content)=> {
 }
 
 /**
- * 日志输出，level 为 error
- * @param {string} content 
- */
-exports.error = (content)=> {
-    let logger = log4js.getLogger('info')
-    logger.level = levels.error
-    logger.error(content)
-}
-
-/**
  * 日志输出，level 为 info
  * @param {string} content 
  */
 exports.info = (content)=> {
-    let logger = log4js.getLogger('error')
+    let logger = log4js.getLogger('info')
     logger.level = levels.info
     logger.info(content)
+}
+
+/**
+ * 日志输出，level 为 error
+ * @param {string} content 
+ */
+exports.error = (content)=> {
+    let logger = log4js.getLogger('error')
+    logger.level = levels.error
+    logger.error(content)
 }
