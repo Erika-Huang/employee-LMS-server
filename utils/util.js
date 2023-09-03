@@ -19,11 +19,11 @@ module.exports = {
      * @param {number} pageNum 
      * @param {number} pageSize 
      */
-    pager({pageNum=1,pageSize=10}) {
+    pager({ pageNum = 1, pageSize = 10 }) {
         // 转为数字
-        pageNum *= 1
-        pageSize *= 1
-        const skipIndex = (pageNum-1)*pageSize
+        pageNum *= 1 // 当前是第几页
+        pageSize *= 1 // 几条数据
+        const skipIndex = (pageNum - 1) * pageSize // 从哪一条开始
         return {
             page: {
                 pageNum,
@@ -32,13 +32,13 @@ module.exports = {
             skipIndex
         }
     },
-    success(data='',msg='',code=CODE.SUCCESS) {
+    success(data = '', msg = '', code = CODE.SUCCESS) {
         log4js.debug(data)
         return {
             code, data, msg
         }
     },
-    fail(data='',msg='',code=CODE.BUSINESS_ERROR) {
+    fail(data = '', msg = '', code = CODE.BUSINESS_ERROR) {
         log4js.debug(msg)
         return {
             code, data, msg
