@@ -6,11 +6,13 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const log4js = require('./utils/log4j')
-const users = require('./routes/users')
 const router = require('koa-router')()
 const jwt = require('jsonwebtoken')
 const koajwt = require('koa-jwt')
 const util = require('./utils/util')
+
+const users = require('./routes/users')
+const menus = require('./routes/menus')
 
 // error handler
 onerror(app)
@@ -56,15 +58,10 @@ app.use(koajwt({
 // routes
 router.prefix('/api')
 
-router.get('/leave/count', (ctx) => {
-  console.log('=>', ctx.request.headers);
-  const token = ctx.request.headers.authorization.split(' ')[1]
-  // 验证，解密数据
-  const payload = jwt.verify(token, 'employee-leave-management-system')
-  ctx.body = payload
-})
 
 router.use(users.routes(), users.allowedMethods())
+router.use(menus.routes(), menus.allowedMethods())
+
 app.use(router.routes(), router.allowedMethods())
 
 // error-handling
@@ -72,5 +69,11 @@ app.on('error', (err, ctx) => {
   // console.error('server error', err, ctx)
   log4js.error(`${err.stack}`)
 });
-
+router.get('/leave/count', (ctx) => {
+  console.log('=>', ctx.request.headers);
+  const token = ctx.request.headers.authorization.split(' ')[1]
+  // 验证，解密数据
+  const payload = jwt.verify(token, 'employee-leave-management-system')
+  ctx.body = payload
+})
 module.exports = app
