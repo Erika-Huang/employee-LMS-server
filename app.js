@@ -69,11 +69,5 @@ app.on('error', (err, ctx) => {
   // console.error('server error', err, ctx)
   log4js.error(`${err.stack}`)
 });
-router.get('/leave/count', (ctx) => {
-  console.log('=>', ctx.request.headers);
-  const token = ctx.request.headers.authorization.split(' ')[1]
-  // 验证，解密数据
-  const payload = jwt.verify(token, 'employee-leave-management-system')
-  ctx.body = payload
-})
+
 module.exports = app

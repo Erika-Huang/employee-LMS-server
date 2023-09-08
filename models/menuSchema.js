@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 /**
- * 用户表
+ * 菜单表
  */
-const userSchema = mongoose.Schema({
+const menuSchema = mongoose.Schema({
     menuType: Number,// 菜单类型
     menuName: String,// 菜单名称
     menuCode: String,// 权限标识
@@ -23,4 +23,4 @@ const userSchema = mongoose.Schema({
 })
 
 // 定义users、定义配置、关联的集合名称
-module.exports = mongoose.model("menus", userSchema, "menus")
+module.exports = mongoose.model("menus", menuSchema, "menus")
