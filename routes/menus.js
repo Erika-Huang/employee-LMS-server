@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const util = require('../utils/util') // 文本的输出需要用到util工具
 const Menu = require('../models/menuSchema')
+const log4js = require('../utils/log4j')
 
 router.prefix('/menu')
 
@@ -19,7 +20,7 @@ router.get('/list', async (ctx) => {
 function getTreeMenu(rootList, id, list) {
     for (let i = 0; i < rootList.length; i++) {
         let item = rootList[i]
-        if (item.parentId.slice().pop() == String(id)) {
+        if (String(item.parentId.slice().pop()) == String(id)) {
             list.push(item._doc)
         }
     }
@@ -33,6 +34,7 @@ function getTreeMenu(rootList, id, list) {
             item.action = item.children
         }
     })
+    return list
 }
 
 // 菜单编辑、删除、新增功能
