@@ -23,7 +23,7 @@ module.exports = {
         // 转为数字
         pageNum *= 1 // 当前是第几页
         pageSize *= 1 // 几条数据
-        const skipIndex = (pageNum - 1) * pageSize // 从哪一条开始
+        const skipIndex = (pageNum - 1) * pageSize // 从哪一条开始，下标索引
         return {
             page: {
                 pageNum,
