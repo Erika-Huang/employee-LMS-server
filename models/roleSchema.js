@@ -15,6 +15,10 @@ const roleSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    "updateTime": {
+        type: Date,
+        default: Date.now()
+    },
     remark: String
 })
 
