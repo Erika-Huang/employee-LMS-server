@@ -75,5 +75,17 @@ router.post('/operate', async (ctx) => {
     }
 })
 
-
+// 权限设置
+router.post('/update/permission', async (ctx) => {
+    // 获取参数
+    const { _id, permissionList } = ctx.request.body
+    try {
+        // 先根据_id来查询到需要更新的id，permissionList 是因为我们roleSchema这个模型里面有一个字段 permissionList
+        let params = { permissionList, update: new Date() }
+        let res = await Role.findByIdAndUpdate(_id, params)
+        ctx.body = util.success(res, '权限设置成功')
+    } catch (error) {
+        ctx.body = util.fail('权限设置失败', error.stack)
+    }
+})
 module.exports = router
