@@ -9,7 +9,6 @@ const roleSchema = mongoose.Schema({
     "permissionList": {
         checkedKeys: [],
         halfCheckedKeys: []
-
     },
     "createTime": {        //创建时间
         type: Date,
