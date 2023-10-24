@@ -27,7 +27,7 @@ router.post('/login', async (ctx) => {
     const res = await User.findOne({
       userName,
       userPwd: md5(userPwd)
-    }, 'userId userName userEmail state role depId roleList')
+    }, 'userId userName userEmail state role deptId roleList')
 
     if (res) {
       const data = res._doc // 整体加密，返回用户字段
@@ -146,9 +146,9 @@ router.post('/operate', async (ctx) => {
 router.get("/getPermissionList", async (ctx) => {
   let authorization = ctx.request.headers.authorization
   let { data } = util.decoded(authorization)
-  let menuList = await getMenuList(data.role, data.roleList)
+  let menuList = await getMenuList(data.role, data.roleList);
   let actionList = getAction(JSON.parse(JSON.stringify(menuList)))
-  ctx.body = util.success({ menuList, actionList })
+  ctx.body = util.success({ menuList, actionList });
 })
 
 async function getMenuList(userRole, roleKeys) {
@@ -159,6 +159,7 @@ async function getMenuList(userRole, roleKeys) {
     // 根据用户拥有的角色，获取权限列表
     // 现查找用户对应的角色有哪些
     let roleList = await Role.find({ _id: { $in: roleKeys } })
+    let permissionList = []
     roleList.map(role => {
       let { checkedKeys, halfCheckedKeys } = role.permissionList;
       permissionList = permissionList.concat([...checkedKeys, ...halfCheckedKeys])
@@ -173,7 +174,7 @@ function getAction(list) {
   let actionList = []
   const deep = (arr) => {
     while (arr.length) {
-      let item = arr.pop()
+      let item = arr.pop();
       if (item.action) {
         item.action.map(action => {
           actionList.push(action.menuCode)
@@ -185,6 +186,6 @@ function getAction(list) {
     }
   }
   deep(list)
-  return actionList
+  return actionList;
 }
 module.exports = router
