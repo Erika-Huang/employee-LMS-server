@@ -43,32 +43,33 @@
 
 ## 重要文件夹及文件说明
 1. 后端
-config文件夹——连接数据库
-logs文件夹——日志文件存放
-models文件夹——数据表模型
-public文件夹——公共静态资源
-routes文件夹——页面的核心功能后端实现
-utils文件夹——公共函数封装、二次封装日志包logjs
+- config文件夹——连接数据库
+- logs文件夹——日志文件存放
+- models文件夹——数据表模型
+- public文件夹——公共静态资源
+- routes文件夹——页面的核心功能后端实现
+- utils文件夹——公共函数封装、二次封装日志包logjs
 2. 前端
-api文件夹——api接口统一定义和存放
-assets文件夹——公共静态资源存放
-components文件夹——公共组件
-config文件夹——环境配置封装
-router文件夹——路由渲染和路由路径
-store文件夹——Vuex状态管理、Mutations业务层数据提交
-utils文件夹——axios二次封装-请求拦截，响应拦截、
+- api文件夹——api接口统一定义和存放
+- assets文件夹——公共静态资源存放
+- components文件夹——公共组件
+- config文件夹——环境配置封装
+- router文件夹——路由渲染和路由路径
+- store文件夹——Vuex状态管理、Mutations业务层数据提交
+- utils文件夹——axios二次封装-请求拦截，响应拦截、
              storage二次封装、工具函数封装
 views文件夹——前端页面存放
 ## 使用说明
 
 1. 下载 [前端代码](https://github.com/Erika-Huang/employee-LMS-client) 和 [后端代码](https://github.com/Erika-Huang/employee-LMS-server)， 分别打开文件，使用Robo3T，连接数据库后，创建对应的数据库：manager
 在数据库的Collections中创建
-counters
-depts
-leaves
-menus
-roles
-users
+- counters
+- depts
+- leaves
+- menus
+- roles
+- users
+
 其中，users中创建一个用户
 ```json
 {
